@@ -13,7 +13,7 @@ namespace EcomSite.Server.Controllers
       _authService = authService;
     }
 
-    [HttpPost]
+    [HttpPost("register")]
     public async Task<ActionResult<ServiceResponse<int>>> Register([FromBody]UserRegister userRegister)
     {
       var response = await _authService.Register(new User { Email = userRegister.Email }, userRegister.Password);

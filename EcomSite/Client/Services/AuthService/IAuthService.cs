@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace EcomSite.Client.Services.AuthService
+﻿namespace EcomSite.Client.Services.AuthService
 {
   public interface IAuthService
   {

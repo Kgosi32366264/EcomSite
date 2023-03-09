@@ -1,17 +1,16 @@
-﻿using EcomSite.Shared;
-using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography;
-using System.Text;
+﻿using System.Security.Cryptography;
 
 namespace EcomSite.Server.Services.AuthService
 {
   public class AuthService : IAuthService
   {
-    private readonly DataContext _dataContext;
-    public AuthService(DataContext dataContext)
+    private readonly DataContext _context;
+
+    public AuthService(DataContext context)
     {
-      _dataContext = dataContext;
+      _context = context;
     }
+
     public async Task<ServiceResponse<int>> Register(User user, string password)
     {
       if (await UserExists(user.Email))
@@ -28,15 +27,16 @@ namespace EcomSite.Server.Services.AuthService
       user.PasswordHash = passwordHash;
       user.PasswordSalt = passwordSalt;
 
-      _dataContext.Users.Add(user);
-      await _dataContext.SaveChangesAsync();
+      _context.Users.Add(user);
+      await _context.SaveChangesAsync();
 
       return new ServiceResponse<int> { Data = user.Id, Message = "Registration successful!" };
     }
 
-    private async Task<bool> UserExists(string email)
+    public async Task<bool> UserExists(string email)
     {
-      if (await _dataContext.Users.AnyAsync(u => u.Email.ToLower().Equals(email.ToLower())))
+      if (await _context.Users.AnyAsync(user => user.Email.ToLower()
+           .Equals(email.ToLower())))
       {
         return true;
       }
