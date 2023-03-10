@@ -57,7 +57,7 @@
 
     public async Task<List<string>> GetProductSearchSuggestions(string searchText)
     {
-      var result = await _httpClient.GetFromJsonAsync<ServiceResponse<List<string>>>($"api/product/search/{searchText}");
+      var result = await _httpClient.GetFromJsonAsync<ServiceResponse<List<string>>>($"api/product/searchsuggestions/{searchText}");
       return result.Data;
     }
   }
