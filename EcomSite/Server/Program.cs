@@ -4,8 +4,6 @@ global using EcomSite.Shared;
 using EcomSite.Server.Services.CatergoryService;
 using EcomSite.Server.Services.ProductService;
 using EcomSite.Server.Services.AuthService;
-using Microsoft.AspNetCore.HttpLogging;
-using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
 using NLog.Web;
 
@@ -40,16 +38,15 @@ builder.Services.AddLogging(loggingBuilder =>
 //  builder.AddConsole();
 //});
 
-builder.Services.AddHttpContextAccessor();
-builder.Services.AddHttpLogging(logging => { logging.LoggingFields = HttpLoggingFields.All;});
+//builder.Services.AddHttpContextAccessor();
+//builder.Services.AddHttpLogging(logging => { logging.LoggingFields = HttpLoggingFields.All;});
 
 var app = builder.Build();
 
 app.UseHttpLogging();
-app.UseSwaggerUI(c =>
-{
-  c.SwaggerEndpoint("/swagger/v1/swagger.json", "EcomSite.Server V1");
-});
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -63,8 +60,6 @@ else
   // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
   app.UseHsts();
 }
-
-app.UseSwagger();
 app.UseCors();
 app.UseHttpsRedirection();
 
