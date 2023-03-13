@@ -1,6 +1,4 @@
-﻿using EcomSite.Server.Services.CatergoryService;
-using EcomSite.Server.Services.ProductService;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace EcomSite.Server.Controllers
 {
@@ -9,7 +7,7 @@ namespace EcomSite.Server.Controllers
   public class ProductController : ControllerBase
   {
     private readonly IProductService _productService;
-    private readonly ICatergoryService _catergoryService;
+    private readonly ICategoryService _catergoryService;
     public ProductController(IProductService productService)
     {
       _productService = productService;

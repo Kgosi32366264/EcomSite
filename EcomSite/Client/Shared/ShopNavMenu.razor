@@ -37,11 +37,11 @@
     collapseNavMenu = !collapseNavMenu;
   }
 
-  //protected override async Task OnInitializedAsync()
-  //{
-  //  //await CategoryService.GetCategories();
-  //  CategoryService.OnChange += StateHasChanged;
-  //}
+  protected override async Task OnInitializedAsync()
+  {
+    await CategoryService.GetCategories();
+    CategoryService.OnChange += StateHasChanged;
+  }
 
   public void Dispose()
   {

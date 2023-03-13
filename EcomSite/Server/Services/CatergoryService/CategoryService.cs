@@ -1,9 +1,9 @@
 ﻿namespace EcomSite.Server.Services.CatergoryService
 {
-  public class CatergoryService: ICatergoryService
+  public class CategoryService: ICategoryService
   {
     private readonly DataContext _context;
-    public CatergoryService(DataContext context)
+    public CategoryService(DataContext context)
     {
       _context = context;
     }

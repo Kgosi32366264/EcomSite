@@ -7,9 +7,9 @@ namespace EcomSite.Server.Controllers
   [ApiController]
   public class CatergoryController : ControllerBase
   {
-    private readonly ICatergoryService _catergoryService;
+    private readonly ICategoryService _catergoryService;
 
-    public CatergoryController(ICatergoryService catergoryService)
+    public CatergoryController(ICategoryService catergoryService)
     {
       _catergoryService = catergoryService;
     }
